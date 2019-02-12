@@ -1,23 +1,10 @@
 exports.benchmark = (req, res, next) => {
-    /*
-      res.on('finish', function() {
-        logger.info('API request.', {
-            module: 'core'
-            data  : {
-                req: {
-                    method: req.method,
-                    url   : req.url,
-                    ip    : req.ip
-                },
-                res: {
-                    status_code: res.statusCode // Always 200 and not the really one.
-                }
-            }
-        });
-    });
-
-     */
     const startTime = new Date().getTime();
+    res.on('finish', function (event) {
+        // TODO: finish event is too late to set a header because it is already sent, any suggestions?
+        const elapsed = (new Date().getTime() - startTime);
+        console.log('It took ' + elapsed + ' milliseconds');
+    });
     next();
     const elapsed = (new Date().getTime() - startTime) / 1000;
     res.set('X-Perf-Time', elapsed);

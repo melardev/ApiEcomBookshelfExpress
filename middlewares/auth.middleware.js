@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken');
 const expressJwt = require('express-jwt');
 const AppResponseDto = require('../dtos/responses/app_response.dto');
-const bcrypt = require('bcrypt');
 
 const checkToken = expressJwt({
     secret: process.env.JWT_SECRET || 'JWT_SUPER_SECRET',
@@ -20,8 +19,6 @@ function getTokenFromHeader(req) {
 }
 
 const User = require('../config/db.config').User;
-const Role = require('../config/db.config').Role;
-
 
 /**
  *  Decode user's token
@@ -85,19 +82,6 @@ const getFreshUser = (required) => {
                 res.json(AppResponseDto.buildWithErrorMessages(err));
             });
     };
-};
-/**
- * Just check if user has JWT (user is logged in or not)
- */
-exports.hasJWT = (req, res, next) => {
-    if (req.headers.authorization.length > 20) {
-        if (req.query && req.query.hasOwnProperty('access_token')) {
-            req.headers.authorization = 'Bearer ' + req.query.access_token;
-        }
-        checkToken(req, res, next);
-    } else {
-        next();
-    }
 };
 
 exports.isAuthenticated = (req, res, next) => {

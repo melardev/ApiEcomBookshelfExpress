@@ -3,11 +3,11 @@ This is one of my E-commerce API app implementations. It is written in Node js, 
 This is not a finished project by any means, but it has a valid enough shape to be git cloned and studied if you are interested in this topic.
 If you are interested in this project take a look at my other server API implementations I have made with:
 
-- Node Js + Sequelize
-- Node Js + Mongoose
+- [Node Js + Sequelize](https://github.com/melardev/ApiEcomSequelizeExpress)
+- [Node Js + Mongoose](https://github.com/melardev/ApiEcomMongooseExpress)
 - Django
 - Flask
-- [Java Spring Boot + Hibernate]() for the most part this is the implementation of reference.
+- [Java Spring Boot + Hibernate](https://github.com/melardev/SBootApiEcomMVCHibernate)
 - Golang go-gonic
 - Ruby on Rails
 - AspNet Core
@@ -28,7 +28,6 @@ As with most node js projects, do the following
 - CRUD operations on products, comments, tags, categories
 ![Fetching products page](./github_images/postman.png)
 - Orders, guest users may place an order
-
 ![Database diagram](./github_images/db_structure.png)
 
 # What you will learn
@@ -43,6 +42,8 @@ As with most node js projects, do the following
     - middlewares
     - authentication
     - authorization
+- seed data with faker js
+
 - misc
     - project structure
     - dotenv
@@ -64,6 +65,7 @@ Project structure:
 I did not in this case, in the future I will have in my Github page a project like this one but only using Knex.
 - .env the env file from where to populate the process.env node js environment variable
 - public: contains the uploaded files.
+
 # Steps followed to create build this project (incomplete)
 
 - Init knex, this will generate some knexfile.js and migrations 
