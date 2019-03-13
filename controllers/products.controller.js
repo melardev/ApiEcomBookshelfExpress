@@ -22,7 +22,7 @@ exports.getAll = (req, res, next) => {
         Product.fetchPage({
             pageSize,
             page,
-            columns: ['id', 'name', 'slug', 'created_at', 'updated_at'],
+            columns: ['id', 'name', 'slug', 'price', 'created_at', 'updated_at'],
             withRelated: [
                 /* // TODO: if I make this work I will not need to check againg the comment count per article as I did below
                 {

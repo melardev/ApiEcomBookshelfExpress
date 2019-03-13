@@ -11,8 +11,8 @@ exports.index = (req, res, next) => {
     const offset = (page - 1) * pageSize;
 
     return Promise.all([
-        Tag.findAll({
-            offset,
+        Tag.fetchPage({
+            offset: 0,
             limit: pageSize,
             order: [['createdAt', 'DESC'],],
             include: [
@@ -24,8 +24,8 @@ exports.index = (req, res, next) => {
                 },
             ]
         }),
-        Category.findAll({
-            offset,
+        Category.fetchPage({
+            offset: 0,
             limit: pageSize,
             order: [['createdAt', 'DESC'],],
             include: [
@@ -38,10 +38,10 @@ exports.index = (req, res, next) => {
             ]
         }),
     ]).then(function (results) {
-        const tags = results[0];
-        const categories = results[1];
+        const tags = results[0].serialize();
+        const categories = results[1].serialize();
 
-        return res.json(PagesDto.buildHome(tags, categories));
+        return res.json(AppResponseDto.buildSuccessWithDto(PagesDto.buildHome(tags, categories)));
     }).catch(err => {
         return res.json(AppResponseDto.buildWithErrorMessages(err));
     });
